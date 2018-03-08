@@ -1,31 +1,33 @@
-require('dotenv').config()
+require ('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const logger = require('morgan')
 const bodyParser = require('body-parser')
+const logger = require('morgan')
+
 const app = express()
 
-mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
+mongoose.connect(process.env.MONGODB_URI)
 
-const db = mongoose.connection
-db.on('error', err => {
-  console.log(err)
+const db = mongoose.connection.on('error', (err) => {
+    console.log(err)
 })
 
+//
 db.on('open', () => {
-  console.log('Connected to MongoDB')
+    console.log('Connected to MongoDB... Rock \'n Roll')
 })
 
+// MIDDLEWARE
 app.use(logger('dev'))
 app.use(bodyParser.json())
 
+//set up routes
 app.get('/', (req, res) => {
-  res.send("Hello World")
+    res.send('Hello, Clarice. It\'s so nice to see you again')
 })
 
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
-  console.log('App is up and running on port ' + PORT)
+    console.log('Meat sizzlin hot on PORT 3001.')
 })
