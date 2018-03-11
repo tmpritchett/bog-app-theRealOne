@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose')
-const CreatureSchema = require ('./db/schemas/CreatureSchema')
+const CreatureSchema = require ('../schemas/CreatureSchema')
 
 const Creature = mongoose.model ('Creature', CreatureSchema)
 
